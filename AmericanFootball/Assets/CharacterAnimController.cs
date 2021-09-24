@@ -6,10 +6,13 @@ public class CharacterAnimController : MonoBehaviour
 {
     Animator anim;
 
+    //Transform sceneTransform;
+    //[SerializeField] GameObject Scene;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        //sceneTransform = Scene.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -17,6 +20,7 @@ public class CharacterAnimController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            //transform.parent = sceneTransform.transform;
             Debug.Log("Buraya girildi");
             anim.SetBool("shot", true);
             
