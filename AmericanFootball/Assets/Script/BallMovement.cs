@@ -18,6 +18,8 @@ public class BallMovement : MonoBehaviour
     public float baslangic = 0f;
     [SerializeField] GameObject cube;
 
+    float time = 0f;
+
     private void Start()
     {
         anim = Character.GetComponent<Animator>();
@@ -32,19 +34,26 @@ public class BallMovement : MonoBehaviour
     {
         
         if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot"))
-        {     
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            Debug.Log("not playing");
-            transform.parent = sceneTransform.transform;
-            rigidbody.constraints = RigidbodyConstraints.None;
-            rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            transform.Translate(transform.forward * Time.deltaTime * speed);
-            shot();
-            var emission = particleSystem.emission;
-            emission.rateOverTime = 500f;
+        {
+            time += Time.deltaTime;
+            if (time < 0.1)
+            {
+                Debug.Log(time);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log("not playing");
+                transform.parent = sceneTransform.transform;
+                rigidbody.constraints = RigidbodyConstraints.None;
+                rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                transform.Translate(transform.forward * Time.deltaTime * speed);
+                shot();
+                var emission = particleSystem.emission;
+                emission.rateOverTime = 500f;
+            }
+            
         }
         else
         {
+            time = 0f;
             Debug.Log("playing");
         }
         
@@ -85,8 +94,11 @@ public class BallMovement : MonoBehaviour
  */
     void shot()
     {
-        Vector3 a = new Vector3(Bodytransform.forward.x, 0.5f,  Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z.
-        
+        Vector3 a = new Vector3(Bodytransform.forward.x, 2f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z.
+
         rigidbody.velocity = a * speed;
+
+
+
     }
 }
