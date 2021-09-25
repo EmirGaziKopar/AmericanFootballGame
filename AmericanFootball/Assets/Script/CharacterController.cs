@@ -31,16 +31,16 @@ public class CharacterController : MonoBehaviour
 
                 if (Input.GetKey(KeyCode.D))
                 {
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity* 2f);
                 }
 
                 else if (Input.GetKey(KeyCode.A))
                 {
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity* 2f);
                 }
                 else
                 {
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
                 }
             }
             else if (Input.GetKey(KeyCode.W))
@@ -49,28 +49,28 @@ public class CharacterController : MonoBehaviour
                 if (Input.GetKey(KeyCode.A))
                 {
                     Debug.Log("was");
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
                 }
 
                 else if (Input.GetKey(KeyCode.D))
                 {
                     Debug.Log("was");
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
                 }
                 else
                 {
-                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                    transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
                 }
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
             }
 
             else if (Input.GetKey(KeyCode.A))
             {
-                transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity*4);
+                transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * velocity * 2f);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
