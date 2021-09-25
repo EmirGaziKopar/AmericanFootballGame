@@ -94,7 +94,7 @@ public class BallMovement : MonoBehaviour
  */
     void shot()
     {
-        Vector3 a = new Vector3(Bodytransform.forward.x, 2f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z.
+        Vector3 a = new Vector3(Bodytransform.forward.x, 1.5f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z.
 
         rigidbody.velocity = a * speed;
 
