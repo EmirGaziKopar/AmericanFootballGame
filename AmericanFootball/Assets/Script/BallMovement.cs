@@ -43,7 +43,8 @@ public class BallMovement : MonoBehaviour
                 Debug.Log("not playing");
                 transform.parent = sceneTransform.transform;
                 rigidbody.constraints = RigidbodyConstraints.None;
-                rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
+                
                 transform.Translate(transform.forward * Time.deltaTime * speed);
                 shot();
                 var emission = particleSystem.emission;
@@ -56,8 +57,11 @@ public class BallMovement : MonoBehaviour
             time = 0f;
             Debug.Log("playing");
         }
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
+        rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
         
-        
+
+
     }
  /*
     private void OnTriggerEnter(Collider other)
