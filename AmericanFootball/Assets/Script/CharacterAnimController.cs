@@ -5,12 +5,13 @@ using UnityEngine;
 public class CharacterAnimController : MonoBehaviour
 {
     Animator anim;
-
+    ButtonController buttonController;
     //Transform sceneTransform;
     //[SerializeField] GameObject Scene;
     // Start is called before the first frame update
     void Start()
     {
+        buttonController = GetComponent<ButtonController>();
         anim = GetComponent<Animator>();
         //sceneTransform = Scene.GetComponent<Transform>();
     }
@@ -18,7 +19,8 @@ public class CharacterAnimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        // if (Input.GetMouseButton(0) | ButtonController.isShoot==true)
+         if(ButtonController.isShoot == true)
         {
             //transform.rotation = Quaternion.Euler(0, 0, 0); Bunun yüzünden animasyona çamur attým
             //transform.parent = sceneTransform.transform;

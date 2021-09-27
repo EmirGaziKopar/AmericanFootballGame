@@ -17,11 +17,27 @@ public class BallMovement : MonoBehaviour
     [SerializeField] GameObject particleSystemPointer;
     public float baslangic = 0f;
     [SerializeField] GameObject cube;
+    CatchBall catchBall;
+    
 
     float time = 0f;
-
-    private void Start()
+   void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("stadium"))
+        {
+            Debug.Log(CatchBall.isTouching);
+            CatchBall.isTouching = false;
+           // Debug.Log(CatchBall.isTouching);
+
+        }
+
+
+
+    }
+        private void Start()
+    {
+      
+        catchBall = GetComponent<CatchBall>();
         anim = Character.GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         Bodytransform = cube.GetComponent<Transform>();
