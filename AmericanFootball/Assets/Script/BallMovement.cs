@@ -133,11 +133,12 @@ public class BallMovement : MonoBehaviour
  */
     void shot()
     {
-        Vector3 a = new Vector3(Bodytransform.forward.x, 0.2f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z. //1.5f eski y vectoru
+        if(isHoldBall == true)
+        {
+            Vector3 a = new Vector3(Bodytransform.forward.x, 0.2f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z. //1.5f eski y vectoru
 
-        rigidbody.velocity = a * speed;
-
-
-
+            rigidbody.velocity = a * speed;
+        }
+        
     }
 }

@@ -24,9 +24,10 @@ public class ButtonController : MonoBehaviour
     }
     public void Shoot()
     {
+
         isShoot = true;
         CharacterAnimController.animTime = 0f;
-        BallMovement.isHoldBall = true; //Top elden çýktý
+        //BallMovement.isHoldBall = false; //Top elden çýktý Burada bu kod olmamalýdýr. Aksi taktirde button down olunca top henüz elden çýkmadan rigidbody sleep olur.
 
     }
     public void MoveRight()

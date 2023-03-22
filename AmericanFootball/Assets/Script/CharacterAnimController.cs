@@ -8,7 +8,7 @@ public class CharacterAnimController : MonoBehaviour
     ButtonController buttonController;
     public static float animTime; //Her click'de shoot click bunu sýfýrlayacak boylelikle oyuncu animasyon bitmeden buttona basamayacak.
     bool isAnimRunning;
-
+    public static float animTime2;
     //Transform sceneTransform;
     //[SerializeField] GameObject Scene;
     // Start is called before the first frame update
