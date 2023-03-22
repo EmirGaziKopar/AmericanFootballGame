@@ -18,6 +18,10 @@ public class BallMovement : MonoBehaviour
     public float baslangic = 0f;
     [SerializeField] GameObject cube;
     CatchBall catchBall;
+    float AnimTime;
+    public static bool isHoldBall;
+
+    
     
 
     float time = 0f;
@@ -36,7 +40,8 @@ public class BallMovement : MonoBehaviour
     }
         private void Start()
     {
-      
+        isHoldBall = true; //Top kimin elinden baþlýyorsa onun referansýnda bu deðer true olmalý 
+        //isHoldBallPlayer2 = true; //Top kimin elinden baþlýyorsa onun referansýnda bu deðer true olmalý (Bu bir static deðer olduðu için ayrý ayrý referanslandýrýlamaz bu nedenle 2 tane ayrý static deðiþken atadýk 2.oyuncu için)
         catchBall = GetComponent<CatchBall>();
         anim = Character.GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
@@ -46,14 +51,23 @@ public class BallMovement : MonoBehaviour
         emission.rateOverTime = baslangic;
     }
 
+
+    
+    
     private void FixedUpdate()
     {
+
+        if(isHoldBall == true)
+        {
+            rigidbody.Sleep();
+        }
         
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot"))
+        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot") && isHoldBall) //Running anim
         {
             time += Time.deltaTime;
             if (time < 0.1)
             {
+                
                 Debug.Log(time);
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 Debug.Log("not playing");
@@ -66,13 +80,20 @@ public class BallMovement : MonoBehaviour
                 shot();
                 var emission = particleSystem.emission;
                 emission.rateOverTime = 500f;
+                BallMovement.isHoldBall = false; //Top elden çýktý
+                //isHoldBall sisteminin yapýlma sebebi karakterde ve topta ayný anda rigidbody olduðunda birbirlerine enerji aktarýp oyun içinde hataya sebep oluyor olmalarýdýr.
             }
             
         }
         else
         {
+
+            
+            
             time = 0f;      
             Debug.Log("playing");
+             //karakter top atýþý yaparken hareket dursun diye
+
         }
         
         
@@ -112,7 +133,7 @@ public class BallMovement : MonoBehaviour
  */
     void shot()
     {
-        Vector3 a = new Vector3(Bodytransform.forward.x, 1.5f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z.
+        Vector3 a = new Vector3(Bodytransform.forward.x, 0.2f, Bodytransform.forward.z); //Topun karsiya gitmesini saglayan z. //1.5f eski y vectoru
 
         rigidbody.velocity = a * speed;
 

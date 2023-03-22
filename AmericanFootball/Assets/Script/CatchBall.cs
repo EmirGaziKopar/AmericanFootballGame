@@ -21,6 +21,8 @@ public class CatchBall : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ball") && isTouching == false)
         {
+            BallMovement.isHoldBall = true; //Topu tuttum. Oyunun baþýnda top elde baþlayacaksa start'da isHoldBall true olmalýdýr.
+
             Debug.Log("collidercalisti");
            // ball.transform.SetParent(rightHand);
             ball.transform.parent = rightHand.transform;

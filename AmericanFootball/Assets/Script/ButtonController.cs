@@ -6,7 +6,7 @@ public class ButtonController : MonoBehaviour
 {
     Rigidbody charRB;
     CharacterController characterController;
-    public static bool moveRight, moveLeft,isShoot;
+    public static bool moveRight, moveLeft,isShoot,isJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,18 @@ public class ButtonController : MonoBehaviour
 
     // Update is called once per frame
     
-   
+    public void IsJump()
+    {
+        CharacterAnimController.animTime = 0f;
+        isJump = true;
+        //CharacterAnimController.jumpTime = 0f;
+    }
     public void Shoot()
     {
         isShoot = true;
+        CharacterAnimController.animTime = 0f;
+        BallMovement.isHoldBall = true; //Top elden çýktý
+
     }
     public void MoveRight()
     {

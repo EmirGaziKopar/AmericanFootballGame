@@ -10,19 +10,22 @@ public class CharacterController : MonoBehaviour
     public float velocity;
     ButtonController buttonController;
     public static float time;
+    int sayac;
     private void Awake()
     {
         buttonController = GetComponent<ButtonController>();
         anim = this.gameObject.GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        
     }
     void Update()
     {     
         moveTheJack();
+        Debug.Log("isJump" + ButtonController.isJump);
     }
    public void moveTheJack()
     {
-        if(transform.position.z >= 560.3f && transform.position.z <= 576f)
+        if(transform.position.z >= 560.3f && transform.position.z <= 576f && ButtonController.isShoot != true && ButtonController.isJump != true) //þut durumu false ise hareket etmeli, þut atarken hareket etmemeli
         {
             anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
@@ -57,16 +60,28 @@ public class CharacterController : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)) //Get And Move
             {
-                 rigidbody.AddForce(transform.up * jumpPower);
+                if (sayac <1)
+                {
+                    Debug.Log("Calisti");
+                    sayac++;
+                    rigidbody.velocity = new Vector3(0f, 600f * Time.deltaTime, 0f);
+                    ButtonController.isJump = true; //Normalde bu buttonun down olmasý sonucu çalýþacak ama þuanda mevcut bir button olmadýðý için test olarak koydum
+                }
+                
+                //rigidbody.Sleep();
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                sayac = 0;
             }
         }
-        else if(transform.position.z < 560.3f)
+        else if(transform.position.z <= 560.3f)
         {
             transform.position += new Vector3(0f, 0f, 1f*Time.deltaTime);
         }
-        else if (transform.position.z > 576f)
+        else if (transform.position.z >= 576f)
         {
             transform.position += new Vector3(0f, 0f, -1f*Time.deltaTime );
         }
