@@ -68,6 +68,7 @@ public class CharacterController : MonoBehaviour
                     sayac++;
                     rigidbody.velocity = new Vector3(0f, 600f * Time.deltaTime, 0f);
                     ButtonController.isJump = true; //Normalde bu buttonun down olmasý sonucu çalýþacak ama þuanda mevcut bir button olmadýðý için test olarak koydum
+                    CharacterAnimController.animTime = 0f; //Buttona ve space'e bastýðýnda hareketsiz kalmasý gerken süreyi tekrar 0'ladýk ki tekrar 1 saniye boyunca isJump = false kalabilsin(ButtonController scriptinde)
                 }
                 
                 //rigidbody.Sleep();

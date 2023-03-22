@@ -20,7 +20,8 @@ public class BallMovement : MonoBehaviour
     CatchBall catchBall;
     float AnimTime;
     public static bool isHoldBall;
-
+    int sayac;
+    public Collider BallCollider;
     
     
 
@@ -38,7 +39,29 @@ public class BallMovement : MonoBehaviour
 
 
     }
-        private void Start()
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "character")
+        {
+            if(sayac < 1)
+            {
+                sayac++;
+                rigidbody.velocity = new Vector3(0f, 0.1f, 0f);
+            }
+            
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "character")
+        {
+            sayac = 0;
+
+        }
+    }
+    */
+    private void Start()
     {
         isHoldBall = true; //Top kimin elinden baþlýyorsa onun referansýnda bu deðer true olmalý 
         //isHoldBallPlayer2 = true; //Top kimin elinden baþlýyorsa onun referansýnda bu deðer true olmalý (Bu bir static deðer olduðu için ayrý ayrý referanslandýrýlamaz bu nedenle 2 tane ayrý static deðiþken atadýk 2.oyuncu için)
@@ -60,6 +83,7 @@ public class BallMovement : MonoBehaviour
         if(isHoldBall == true)
         {
             rigidbody.Sleep();
+            BallCollider.enabled = false;
         }
         
         if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot") && isHoldBall) //Running anim
@@ -81,6 +105,7 @@ public class BallMovement : MonoBehaviour
                 var emission = particleSystem.emission;
                 emission.rateOverTime = 500f;
                 BallMovement.isHoldBall = false; //Top elden çýktý
+                BallCollider.enabled = true; //Top elden çýktýktan sonra tekrar çarpýþabilir. Top eldeyken çarpýþabilir olmasý karakterin yüzeyine çarpýp hatalý çalýþmalara sebep oluyor.
                 //isHoldBall sisteminin yapýlma sebebi karakterde ve topta ayný anda rigidbody olduðunda birbirlerine enerji aktarýp oyun içinde hataya sebep oluyor olmalarýdýr.
             }
             
