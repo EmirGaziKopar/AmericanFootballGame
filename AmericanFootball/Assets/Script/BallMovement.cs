@@ -22,6 +22,7 @@ public class BallMovement : MonoBehaviour
     public static bool isHoldBall;
     int sayac;
     public Collider BallCollider;
+    int sayac1;
     
     
 
@@ -86,10 +87,12 @@ public class BallMovement : MonoBehaviour
             BallCollider.enabled = false;
         }
         
-        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot") && isHoldBall) //Running anim
+        if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("shot") && isHoldBall) //Bu kod burada yazan mevcut animasyon yürütüldüðü sýrada animasyonun ortalarýnda 1 kez çalýþýr ve true deðeri verir.
         {
-            time += Time.deltaTime;
-            if (time < 0.1)
+            sayac1++;
+            Debug.Log("Animasyon Runnn : "+sayac1);
+            time += Time.deltaTime; //Animasyonda karakterin topu elinden çýkarmasý için gereken süre
+            if (time < 0.1) //Burada yazan kodlar gereksiz çünkü zaten bu satýrlar 1 kez çaðrýlýr.
             {
                 
                 Debug.Log(time);

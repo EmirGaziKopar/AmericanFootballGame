@@ -18,11 +18,19 @@ public class CharacterController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         
     }
+    /*
+    private void FixedUpdate()
+    {
+        moveTheJack();
+    }
+    */
+    
     void Update()
     {     
         moveTheJack();
         Debug.Log("isJump" + ButtonController.isJump);
     }
+    
    public void moveTheJack()
     {
         if(transform.position.z >= 560.3f && transform.position.z <= 576f && ButtonController.isShoot != true && ButtonController.isJump != true) //þut durumu false ise hareket etmeli, þut atarken hareket etmemeli
